@@ -19,6 +19,7 @@ def run_game():
                 #系统退出
                 sys.exit()
         pygame.display.flip()
+        jack.blitme()
 
 run_game()
 settings=Settings()
