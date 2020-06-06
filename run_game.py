@@ -21,4 +21,3 @@ def run_game():
 
 run_game()
 settings=Settings()
-print(settings.screen_width)
