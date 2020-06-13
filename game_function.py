@@ -17,7 +17,7 @@ def check_event(jack):
             elif event.key==pygame.K_DOWN:
                 jack.rect.centery+=1
 
-def uodate_screen(screen,jack):
-    screen.fill((112,233,143))
+def update_screen(screen,jack,setting):
+    screen.blit(setting.background,(0,0))
     jack.blitme()
     pygame.display.flip()

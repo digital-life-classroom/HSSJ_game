@@ -14,5 +14,5 @@ def run_game():
     
     while True:
         gf.check_event(jack)
-        gf.uodate_screen(screen,jack)
+        gf.update_screen(screen,jack,ai_setting)
 run_game()
