@@ -1,6 +1,6 @@
 import pygame,sys
 
-def check_event(jack):
+def check_event(jack,background):
         #监视键盘与鼠标事件
     for event in pygame.event.get():
         #如果发生退出事件
@@ -9,15 +9,14 @@ def check_event(jack):
             sys.exit()
         elif event.type==pygame.KEYDOWN:
             if event.key==pygame.K_RIGHT:
-                jack.rect.centerx+=1
+                background.move(-5,0)
             elif event.key==pygame.K_LEFT:
-                jack.rect.centerx-=1
+                background.move(5,0)
             elif event.key==pygame.K_UP:
-                jack.rect.centery-=1
+                background.move(0,5)
             elif event.key==pygame.K_DOWN:
-                jack.rect.centery+=1
+                background.move(0,-5)
 
-def update_screen(screen,jack,setting):
-    screen.blit(setting.background,(0,0))
+def update_screen(screen,jack):
     jack.blitme()
     pygame.display.flip()
