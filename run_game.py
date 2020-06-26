@@ -18,4 +18,5 @@ def run_game():
     while True:
         gf.check_event(jack,background)
         gf.update_screen(screen,jack)
+        print(len(pygame.key.get_pressed()))
 run_game()

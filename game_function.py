@@ -7,15 +7,21 @@ def check_event(jack,background):
         if event.type==pygame.QUIT:
             #系统退出
             sys.exit()
-        elif event.type==pygame.KEYDOWN:
-            if event.key==pygame.K_RIGHT:
-                background.move(-5,0)
-            elif event.key==pygame.K_LEFT:
-                background.move(5,0)
-            elif event.key==pygame.K_UP:
-                background.move(0,5)
-            elif event.key==pygame.K_DOWN:
-                background.move(0,-5)
+    if key_pressed(pygame.K_RIGHT):
+        background.move(-1,0)
+    elif key_pressed(pygame.K_LEFT):
+        background.move(1,0)
+    elif key_pressed(pygame.K_UP):
+        background.move(0,1)
+    elif key_pressed(pygame.K_DOWN):
+        background.move(0,-1)
+
+def key_pressed(key_check):
+    keys=pygame.key.get_pressed()
+    if keys[key_check]==1:
+        return True
+    else:
+        return False
 
 def update_screen(screen,jack):
     jack.blitme()
