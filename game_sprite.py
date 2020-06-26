@@ -18,4 +18,13 @@ class GameSprite(pygame.sprite.Sprite):
         self.rect=self.image.get_rect()
     def move(self,pos_X,pos_Y):
         self.rect.center=[pos_X,pos_Y]
-        pygame.display.update()
+    def change_image(self,index):
+        self.current_index=index
+        self.image=self.images[index]
+        oldcenter=self.rect.center
+        self.rect=self.image.get_rect()
+        original_rect=self.images[self.current_index].get_rect()
+        self.original_width=original_rect.width
+        self.original_height=original_rect.height
+        self.rect.center=oldcenter
+        

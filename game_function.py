@@ -7,14 +7,6 @@ def check_event(background):
         if event.type==pygame.QUIT:
             #系统退出
             sys.exit()
-    if key_pressed(pygame.K_RIGHT):
-        background.move(-1,0)
-    elif key_pressed(pygame.K_LEFT):
-        background.move(1,0)
-    elif key_pressed(pygame.K_UP):
-        background.move(0,1)
-    elif key_pressed(pygame.K_DOWN):
-        background.move(0,-1)
 
 def key_pressed(key_check):
     keys=pygame.key.get_pressed()

@@ -16,10 +16,28 @@ def run_game():
     #设置窗口名称
     pygame.display.set_caption("唤兽世界")
     background.blitme()
+    sprite_group=pygame.sprite.OrderedUpdates()         #按添加顺序绘制sprite类
     game_sprite=GameSprite('image/jack_sprite.png',16)
     game_sprite.move(600,400)
+    sprite_group.add(game_sprite)
+    sprite_group.draw(screen)
+    next_frame=pygame.time.get_ticks()
+    frame=0
     while True:
+        if pygame.time.get_ticks()>next_frame:
+            frame=(frame+1)%4
+            next_frame+=60
+        if gf.key_pressed(pygame.K_RIGHT):
+            background.move(-1,0)
+        elif gf.key_pressed(pygame.K_LEFT):
+            background.move(1,0)
+        elif gf.key_pressed(pygame.K_UP):
+            background.move(0,1)
+        elif gf.key_pressed(pygame.K_DOWN):
+            game_sprite.change_image(frame)
+            background.move(0,-1)
         gf.check_event(background)
         # gf.update_screen(screen,jack)
         pygame.display.flip()
+        
 run_game()
