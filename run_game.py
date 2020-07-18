@@ -28,14 +28,21 @@ def run_game():
             frame=(frame+1)%4
             next_frame+=60
         if gf.key_pressed(pygame.K_RIGHT):
+            game_sprite.change_image(frame)
             background.move(-1,0)
+            sprite_group.draw(screen)
         elif gf.key_pressed(pygame.K_LEFT):
+            game_sprite.change_image(frame)
             background.move(1,0)
+            sprite_group.draw(screen)
         elif gf.key_pressed(pygame.K_UP):
+            game_sprite.change_image(frame)
             background.move(0,1)
+            sprite_group.draw(screen)
         elif gf.key_pressed(pygame.K_DOWN):
             game_sprite.change_image(frame)
             background.move(0,-1)
+            sprite_group.draw(screen)
         gf.check_event(background)
         # gf.update_screen(screen,jack)
         pygame.display.flip()
