@@ -23,6 +23,7 @@ def run_game():
     sprite_group.draw(screen)
     next_frame=pygame.time.get_ticks()
     frame=0
+
     while True:
         if pygame.time.get_ticks()>next_frame:
             frame=(frame+1)%4
@@ -45,6 +46,14 @@ def run_game():
             sprite_group.draw(screen)
         gf.check_event(background)
         # gf.update_screen(screen,jack)
+
+        jiFen=pygame.font.SysFont("宋体",50)
+        jiFenRender=jiFen.render("abc",False,(255,170,0))
+        jiFenRect=jiFenRender.get_rect()
+        jiFenRect.left=1100
+        jiFenRect.top=10
+        screen.blit(jiFenRender,jiFenRect)
+
         pygame.display.flip()
         
 run_game()
