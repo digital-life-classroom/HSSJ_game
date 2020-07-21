@@ -11,5 +11,6 @@ class JiFen():
         screen.blit(self.jiFenRender,self.jiFenRect)
     def plus(self):
         self.jifen +=1
+        self.jiFenRender=self.jiFen.render("杀敌数:"+str(self.jifen),False,(255,170,0))
     def total(self):
         return self.jifen
