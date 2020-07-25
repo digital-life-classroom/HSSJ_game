@@ -6,10 +6,10 @@ class GameSprite(pygame.sprite.Sprite):
         img=pygame.image.load(filename)
         self.original_width=img.get_width()//frames
         self.original_height=img.get_height()
-        frame_surface=pygame.Surface([self.original_width,self.original_height])
+        frame_surface=pygame.Surface([self.original_width,self.original_height], pygame.SRCALPHA)
         x=0
         for frame_no in range(frames):
-            frame_surface=pygame.Surface([self.original_width,self.original_height])
+            frame_surface=pygame.Surface([self.original_width,self.original_height], pygame.SRCALPHA)
             frame_surface.blit(img,[x,0])
             self.images.append(frame_surface.copy())
             x-=self.original_width
