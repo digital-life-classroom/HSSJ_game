@@ -1,6 +1,6 @@
 import pygame,sys
 
-def check_event(background):
+def check_event():
         #监视键盘与鼠标事件
     for event in pygame.event.get():
         #如果发生退出事件

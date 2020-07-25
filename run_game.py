@@ -5,6 +5,7 @@ import game_function as gf
 from background import Background
 from game_sprite import GameSprite
 from jifen import JiFen
+from kaishi import Kaishi
 
 def run_game():
     #初始化游戏
@@ -16,45 +17,56 @@ def run_game():
     background=Background(screen)
     #设置窗口名称
     pygame.display.set_caption("唤兽世界")
-    background.blitme()
-    sprite_group=pygame.sprite.OrderedUpdates()         #按添加顺序绘制sprite类
-    game_sprite=GameSprite('image/jack_sprite.png',16)
-    game_sprite.move(600,400)
-    sprite_group.add(game_sprite)
-    sprite_group.draw(screen)
+    
     next_frame=pygame.time.get_ticks()
     frame=0
 
+
     jifen=JiFen()
     
+    kai_shi=Kaishi()
+    kai_shi.kaishi(screen)
+
+    begingame=False
     while True:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                #系统退出
+                sys.exit()
+            elif event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_RETURN:
+                    begingame=True
+                    background.blitme()
+                    sprite_group=pygame.sprite.OrderedUpdates()         #按添加顺序绘制sprite类
+                    game_sprite=GameSprite('image/jack_sprite.png',16)
+                    game_sprite.move(600,400)
+                    sprite_group.add(game_sprite)
+                    sprite_group.draw(screen)
+                    jifen.blit_me(screen)
+        if begingame==True:          
+            if pygame.time.get_ticks()>next_frame:
+                frame=(frame+1)%4
+                next_frame+=60
+            if gf.key_pressed(pygame.K_RIGHT):
+                game_sprite.change_image(frame+8)
+                background.move(-1,0)
+                sprite_group.draw(screen)
+            elif gf.key_pressed(pygame.K_LEFT):
+                game_sprite.change_image(frame+4)
+                background.move(1,0)
+                sprite_group.draw(screen)
+            elif gf.key_pressed(pygame.K_UP):
+                game_sprite.change_image(frame+12)
+                background.move(0,1)
+                sprite_group.draw(screen)
+            elif gf.key_pressed(pygame.K_DOWN):
+                game_sprite.change_image(frame)
+                background.move(0,-1)
+                sprite_group.draw(screen)
+            jifen.blit_me(screen)
+        # gf.check_event()
 
-
-        if pygame.time.get_ticks()>next_frame:
-            frame=(frame+1)%4
-            next_frame+=60
-        if gf.key_pressed(pygame.K_RIGHT):
-            game_sprite.change_image(frame+8)
-            background.move(-1,0)
-            sprite_group.draw(screen)
-        elif gf.key_pressed(pygame.K_LEFT):
-            game_sprite.change_image(frame+4)
-            background.move(1,0)
-            sprite_group.draw(screen)
-        elif gf.key_pressed(pygame.K_UP):
-            game_sprite.change_image(frame+12)
-            background.move(0,1)
-            sprite_group.draw(screen)
-        elif gf.key_pressed(pygame.K_DOWN):
-            game_sprite.change_image(frame)
-            background.move(0,-1)
-            sprite_group.draw(screen)
-
-
-        gf.check_event(background)
-        # gf.update_screen(screen,jack)
-
-        jifen.blit_me(screen)
+        #gf.update_screen(screen,jack)
 
         pygame.display.flip()
         
