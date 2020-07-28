@@ -2,7 +2,8 @@ import pygame,sys
 import random
 from settings import Setting
 from jack import Jack
-import game_function as gf
+# import game_function as gf
+from game_function import Game_function
 from background import Background
 from game_sprite import GameSprite
 from jifen import JiFen
@@ -22,6 +23,7 @@ def run_game():
     next_frame=pygame.time.get_ticks()
     frame=0
 
+    gf=Game_function(screen)
 
     jifen=JiFen()
     
@@ -31,6 +33,8 @@ def run_game():
     begingame=False
     pygame.mixer.music.load("music/begin_music.wav")
     pygame.mixer.music.play(-1,0)
+
+    jack=Jack(screen,gf)
     while True:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
@@ -41,19 +45,15 @@ def run_game():
                     begingame=True
                     background.blitme()
 
-                    jack_group=pygame.sprite.OrderedUpdates()         #按添加顺序绘制sprite类
-                    game_jack=GameSprite('image/jack_sprite.png',16)
-                    game_jack.move(600,400)
-                    jack_group.add(game_jack)
-                    jack_group.draw(screen)
                     jifen.blit_me(screen)
+                    
                     spirit_group=pygame.sprite.OrderedUpdates()
 
                     game_spirit=GameSprite('image/spirit_sprite.png',16)
-                    game_spirit.move(730,200)
-                    spirit_group.add(game_spirit)
-                    spirit_group.draw(screen)
-                    jifen.blit_me(screen)
+                    # game_spirit.move(730,200)
+                    # spirit_group.add(game_spirit)
+                    # spirit_group.draw(screen)
+                    # jifen.blit_me(screen)
 
                     for i in range(3):
                         a=random.randint(0,1201)
@@ -66,27 +66,9 @@ def run_game():
                     pygame.mixer.music.load("music/music.wav")
                     pygame.mixer.music.play(-1,0)
         if begingame==True:          
-            if pygame.time.get_ticks()>next_frame:
-                frame=(frame+1)%4
-                next_frame+=120
-            if gf.key_pressed(pygame.K_RIGHT):
-                game_jack.change_image(frame+8)
-                background.move(-1,0)
-                jack_group.draw(screen)
-            elif gf.key_pressed(pygame.K_LEFT):
-                game_jack.change_image(frame+4)
-                background.move(1,0)
-                jack_group.draw(screen)
-            elif gf.key_pressed(pygame.K_UP):
-                game_jack.change_image(frame+12)
-                background.move(0,1)
-                jack_group.draw(screen)
-            elif gf.key_pressed(pygame.K_DOWN):
-                game_jack.change_image(frame)
-                background.move(0,-1)
-                jack_group.draw(screen)
-            
             jifen.blit_me(screen)
+
+            jack.jack_move(next_frame,frame,background)
         # gf.check_event()
 
         #gf.update_screen(screen,jack)
