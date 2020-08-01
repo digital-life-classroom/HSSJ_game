@@ -26,7 +26,6 @@ class Jack():
         if self.gf.key_pressed(pygame.K_RIGHT):
             self.game_jack.change_image(self.frame+8)
             background.move(-1,0)
-            print(self.frame)
             self.jack_group.draw(self.screen)
         elif self.gf.key_pressed(pygame.K_LEFT):
             self.game_jack.change_image(self.frame+4)

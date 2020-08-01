@@ -43,9 +43,6 @@ def run_game():
         spirit.rect.centery=b
 
     while True:
-
-        jack=Jack(screen,gf)
-        
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 #系统退出
