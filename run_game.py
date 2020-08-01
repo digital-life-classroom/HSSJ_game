@@ -34,8 +34,11 @@ def run_game():
     pygame.mixer.music.load("music/begin_music.wav")
     pygame.mixer.music.play(-1,0)
 
-    jack=Jack(screen,gf)
+
     while True:
+
+        jack=Jack(screen,gf)
+        
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 #系统退出
@@ -44,6 +47,8 @@ def run_game():
                 if event.key==pygame.K_RETURN:
                     begingame=True
                     background.blitme()
+
+                    jack=Jack(screen,gf)
 
                     jifen.blit_me(screen)
                     
@@ -65,13 +70,15 @@ def run_game():
 
                     pygame.mixer.music.load("music/music.wav")
                     pygame.mixer.music.play(-1,0)
+
+                    jack.blitme()
         if begingame==True:          
             jifen.blit_me(screen)
 
             jack.jack_move(next_frame,frame,background)
         # gf.check_event()
 
-        #gf.update_screen(screen,jack)
+        # gf.update_screen(screen,jack)
 
         pygame.display.flip()
         
