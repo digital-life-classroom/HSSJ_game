@@ -19,9 +19,6 @@ def run_game():
     background=Background(screen)
     #设置窗口名称
     pygame.display.set_caption("唤兽世界")
-    
-    next_frame=pygame.time.get_ticks()
-    frame=0
 
     gf=Game_function(screen)
 
@@ -75,7 +72,7 @@ def run_game():
         if begingame==True:          
             jifen.blit_me(screen)
 
-            jack.jack_move(next_frame,frame,background)
+            jack.jack_move(background)
         # gf.check_event()
 
         # gf.update_screen(screen,jack)

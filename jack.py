@@ -14,27 +14,30 @@ class Jack():
         self.game_jack=GameSprite('image/jack_sprite.png',16)
         self.game_jack.move(600,400)
         self.jack_group.add(self.game_jack)
+        self.frame=0
+        self.next_frame=pygame.time.get_ticks()
     def blitme(self):
         # self.screen.blit(self.image,self.rect)
         self.jack_group.draw(self.screen)
-    def jack_move(self,next_frame,frame,background):
-        if pygame.time.get_ticks()>next_frame:
-            frame=(frame+1)%4
-            next_frame+=120
+    def jack_move(self,background):
+        if pygame.time.get_ticks()>self.next_frame:
+            self.frame=(self.frame+1)%4
+            self.next_frame+=120
         if self.gf.key_pressed(pygame.K_RIGHT):
-            self.game_jack.change_image(frame+8)
+            self.game_jack.change_image(self.frame+8)
             background.move(-1,0)
+            print(self.frame)
             self.jack_group.draw(self.screen)
         elif self.gf.key_pressed(pygame.K_LEFT):
-            self.game_jack.change_image(frame+4)
+            self.game_jack.change_image(self.frame+4)
             background.move(1,0)
             self.jack_group.draw(self.screen)
         elif self.gf.key_pressed(pygame.K_UP):
-            self.game_jack.change_image(frame+12)
+            self.game_jack.change_image(self.frame+12)
             background.move(0,1)
             self.jack_group.draw(self.screen)
         elif self.gf.key_pressed(pygame.K_DOWN):
-            self.game_jack.change_image(frame)
+            self.game_jack.change_image(self.frame)
             background.move(0,-1)
             self.jack_group.draw(self.screen)
         
