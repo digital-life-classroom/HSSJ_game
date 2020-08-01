@@ -77,11 +77,9 @@ def run_game():
 
                     jack.blitme()
         if begingame==True:          
-            jifen.blit_me(screen)
-
             jack.jack_move(background)
-
             spirits.draw(screen)
+            jifen.blit_me(screen)
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
