@@ -8,6 +8,8 @@ from background import Background
 from game_sprite import GameSprite
 from jifen import JiFen
 from kaishi import Kaishi
+from spirit import Spirit
+from pygame.sprite import Group
 
 def run_game():
     #初始化游戏
@@ -31,6 +33,10 @@ def run_game():
     pygame.mixer.music.load("music/begin_music.wav")
     pygame.mixer.music.play(-1,0)
 
+    spirits=Group()
+    for i in range(6):
+        spirit=Spirit()
+        spirits.add(spirit)
 
     while True:
 
@@ -57,13 +63,13 @@ def run_game():
                     # spirit_group.draw(screen)
                     # jifen.blit_me(screen)
 
-                    for i in range(3):
-                        a=random.randint(0,1201)
-                        b=random.randint(0,801)
-                        game_spirit.move(a,b)
-                        spirit_group.add(game_spirit)
-                        spirit_group.draw(screen)
-                        game_spirit.change_image(4)
+                    # for i in range(3):
+                    #     a=random.randint(0,1201)
+                    #     b=random.randint(0,801)
+                    #     game_spirit.move(a,b)
+                    #     spirit_group.add(game_spirit)
+                    #     spirit_group.draw(screen)
+                    #     game_spirit.change_image(4)
 
                     pygame.mixer.music.load("music/music.wav")
                     pygame.mixer.music.play(-1,0)
@@ -73,6 +79,8 @@ def run_game():
             jifen.blit_me(screen)
 
             jack.jack_move(background)
+
+            spirits.draw(screen)
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
