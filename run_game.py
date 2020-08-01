@@ -37,6 +37,10 @@ def run_game():
     for i in range(6):
         spirit=Spirit()
         spirits.add(spirit)
+        a=random.randint(0,1201)
+        b=random.randint(0,801)
+        spirit.rect.centerx=a
+        spirit.rect.centery=b
 
     while True:
 
@@ -64,8 +68,8 @@ def run_game():
                     # jifen.blit_me(screen)
 
                     # for i in range(3):
-                    #     a=random.randint(0,1201)
-                    #     b=random.randint(0,801)
+                        # a=random.randint(0,1201)
+                        # b=random.randint(0,801)
                     #     game_spirit.move(a,b)
                     #     spirit_group.add(game_spirit)
                     #     spirit_group.draw(screen)
