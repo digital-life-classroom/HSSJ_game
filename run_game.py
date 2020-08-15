@@ -36,12 +36,8 @@ def run_game():
 
     spirits=Group()
     for i in range(6):
-        spirit=Spirit()
+        spirit=Spirit(screen)
         spirits.add(spirit)
-        a=random.randint(0,1201)
-        b=random.randint(0,801)
-        spirit.rect.centerx=a
-        spirit.rect.centery=b
 
     while True:
         for event in pygame.event.get():
@@ -83,7 +79,6 @@ def run_game():
             jack.jack_move(background)
 
             spirits.update()
-            spirits.draw(screen)
 
             jifen.blit_me(screen)
 
