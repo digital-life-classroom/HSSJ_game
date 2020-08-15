@@ -90,4 +90,3 @@ def run_game():
         pygame.display.flip()
         
 run_game()
-#1062,1065,1071,1072,1086
