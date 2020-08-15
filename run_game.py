@@ -10,6 +10,7 @@ from jifen import JiFen
 from kaishi import Kaishi
 from spirit import Spirit
 from pygame.sprite import Group
+from ai_xin import Ai_xin
 
 def run_game():
     #初始化游戏
@@ -75,11 +76,18 @@ def run_game():
                     pygame.mixer.music.load("music/music.wav")
                     pygame.mixer.music.play(-1,0)
 
+                    ai_xin=Ai_xin(screen)
+
                     jack.blitme()
-        if begingame==True:          
+        if begingame==True:
             jack.jack_move(background)
+
+            spirits.update()
             spirits.draw(screen)
+
             jifen.blit_me(screen)
+
+            ai_xin.blit_ai_xin()
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
@@ -87,3 +95,4 @@ def run_game():
         pygame.display.flip()
         
 run_game()
+#1062,1065,1071,1072,1086

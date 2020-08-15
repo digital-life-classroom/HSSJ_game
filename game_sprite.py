@@ -18,6 +18,9 @@ class GameSprite(pygame.sprite.Sprite):
         self.rect=self.image.get_rect()
     def move(self,pos_X,pos_Y):
         self.rect.center=[pos_X,pos_Y]
+    def aixin_move(self):
+        self.rect.left=10
+        self.rect.top=10
     def change_image(self,index):
         self.current_index=index
         self.image=self.images[index]

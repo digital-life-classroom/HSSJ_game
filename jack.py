@@ -39,4 +39,7 @@ class Jack():
             self.game_jack.change_image(self.frame)
             background.move(0,-1)
             self.jack_group.draw(self.screen)
+        else:
+            background.move(0,0)
+            self.jack_group.draw(self.screen)
         
