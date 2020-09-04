@@ -1,5 +1,6 @@
 import pygame
 from game_sprite import GameSprite
+from ai_xin import Ai_xin
 
 class Jack():
     def __init__(self,screen,gf):
@@ -16,29 +17,40 @@ class Jack():
         self.jack_group.add(self.game_jack)
         self.frame=0
         self.next_frame=pygame.time.get_ticks()
+        self.speed=0.5
+        self.xl=7
     def blitme(self):
         # self.screen.blit(self.image,self.rect)
         self.jack_group.draw(self.screen)
-    def jack_move(self,background):
+    def jack_move(self,background,spirits):
+        aixin=Ai_xin(self.screen)
         if pygame.time.get_ticks()>self.next_frame:
             self.frame=(self.frame+1)%4
-            self.next_frame+=120
+            self.next_frame+=180
         if self.gf.key_pressed(pygame.K_RIGHT):
             self.game_jack.change_image(self.frame+8)
-            background.move(-1,0)
+            background.move(-self.speed,0)
             self.jack_group.draw(self.screen)
+            spirits.update(True,-self.speed,0)
+            self.xl-=1
+            aixin.js_xl(self.xl)
         elif self.gf.key_pressed(pygame.K_LEFT):
             self.game_jack.change_image(self.frame+4)
-            background.move(1,0)
+            background.move(self.speed,0)
             self.jack_group.draw(self.screen)
+            spirits.update(True,self.speed,0)
+            self.xl+=1
+            aixin.js_xl(self.xl)
         elif self.gf.key_pressed(pygame.K_UP):
             self.game_jack.change_image(self.frame+12)
-            background.move(0,1)
+            background.move(0,self.speed)
             self.jack_group.draw(self.screen)
+            spirits.update(True,0,self.speed)
         elif self.gf.key_pressed(pygame.K_DOWN):
             self.game_jack.change_image(self.frame)
-            background.move(0,-1)
+            background.move(0,-self.speed)
             self.jack_group.draw(self.screen)
+            spirits.update(True,0,-self.speed)
         else:
             background.move(0,0)
             self.jack_group.draw(self.screen)

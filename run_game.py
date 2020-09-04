@@ -76,7 +76,7 @@ def run_game():
 
                     jack.blitme()
         if begingame==True:
-            jack.jack_move(background)
+            jack.jack_move(background,spirits)
 
             spirits.update()
 
@@ -90,3 +90,4 @@ def run_game():
         pygame.display.flip()
         
 run_game()
+#1102,1109,1119
