@@ -16,25 +16,6 @@ class Ai_xin():
         self.next_frame=pygame.time.get_ticks()
     def blit_ai_xin(self):
         self.ai_xin_group.draw(self.screen)
-    def js_xl(self,xl=7):
-        if xl==7:
-            self.game_ai_xin.change_image(7)
-            self.ai_xin_group.draw(self.screen)
-        elif xl==6:
-            self.game_ai_xin.change_image(6)
-            self.ai_xin_group.draw(self.screen)
-        elif xl==5:
-            self.game_ai_xin.change_image(5)
-            self.ai_xin_group.draw(self.screen)
-        elif xl==4:
-            self.game_ai_xin.change_image(4)
-            self.ai_xin_group.draw(self.screen)
-        elif xl==3:
-            self.game_ai_xin.change_image(3)
-            self.ai_xin_group.draw(self.screen)
-        elif xl==2:
-            self.game_ai_xin.change_image(2)
-            self.ai_xin_group.draw(self.screen)
-        elif xl==1:
-            self.game_ai_xin.change_image(1)
+    def js_xl(self,xl=6):
+            self.game_ai_xin.change_image(xl)
             self.ai_xin_group.draw(self.screen)

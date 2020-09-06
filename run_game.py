@@ -77,12 +77,13 @@ def run_game():
                     jack.blitme()
         if begingame==True:
             jack.jack_move(background,spirits)
+            jack.jack_attack()
 
             spirits.update()
 
             jifen.blit_me(screen)
 
-            ai_xin.blit_ai_xin()
+            ai_xin.js_xl(6)
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
@@ -90,4 +91,4 @@ def run_game():
         pygame.display.flip()
         
 run_game()
-#1102,1109,1119
+#1091~1096
