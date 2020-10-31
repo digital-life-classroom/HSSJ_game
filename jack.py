@@ -19,6 +19,7 @@ class Jack():
         self.frame=0
         self.next_frame=pygame.time.get_ticks()
         self.speed=0.5
+        self.direction=4
     def blitme(self):
         # self.screen.blit(self.image,self.rect)
         self.jack_group.draw(self.screen)
@@ -32,25 +33,35 @@ class Jack():
             background.move(-self.speed,0)
             self.jack_group.draw(self.screen)
             spirits.update(True,-self.speed,0)
+            self.direction=1
         elif self.gf.key_pressed(pygame.K_LEFT):
             self.game_jack.change_image(self.frame+4)
             background.move(self.speed,0)
             self.jack_group.draw(self.screen)
             spirits.update(True,self.speed,0)
+            self.direction=2
         elif self.gf.key_pressed(pygame.K_UP):
             self.game_jack.change_image(self.frame+12)
             background.move(0,self.speed)
             self.jack_group.draw(self.screen)
             spirits.update(True,0,self.speed)
+            self.direction=3
         elif self.gf.key_pressed(pygame.K_DOWN):
             self.game_jack.change_image(self.frame)
             background.move(0,-self.speed)
             self.jack_group.draw(self.screen)
             spirits.update(True,0,-self.speed)
+            self.direction=4
         else:
             background.move(0,0)
             self.jack_group.draw(self.screen)
-    def jack_attack(self):
-        attack=Attack(self.screen)
+    def jack_attack(self,attack):
         if self.gf.key_pressed(pygame.K_z):
-            attack.hyjq_gj
+            if self.direction==1:
+                attack.hyjq_gj(630,400)
+            elif self.direction==2:
+                attack.hyjq_gj(580,400)
+            elif self.direction==3:
+                attack.hyjq_gj(600,370)
+            elif self.direction==4:
+                attack.hyjq_gj(600,430)

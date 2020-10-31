@@ -11,6 +11,7 @@ from kaishi import Kaishi
 from spirit import Spirit
 from pygame.sprite import Group
 from ai_xin import Ai_xin
+from attack import Attack
 
 def run_game():
     #初始化游戏
@@ -38,6 +39,8 @@ def run_game():
     for i in range(6):
         spirit=Spirit(screen)
         spirits.add(spirit)
+
+    attack=Attack(screen)
 
     while True:
         for event in pygame.event.get():
@@ -77,13 +80,14 @@ def run_game():
                     jack.blitme()
         if begingame==True:
             jack.jack_move(background,spirits)
-            jack.jack_attack()
+            jack.jack_attack(attack)
 
             spirits.update()
 
             jifen.blit_me(screen)
 
             ai_xin.js_xl(6)
+
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
@@ -91,4 +95,3 @@ def run_game():
         pygame.display.flip()
         
 run_game()
-#1091~1096
