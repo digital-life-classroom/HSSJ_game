@@ -65,3 +65,12 @@ class Jack():
                 attack.hyjq_gj(600,370)
             elif self.direction==4:
                 attack.hyjq_gj(600,430)
+        if self.gf.key_pressed(pygame.K_x):
+            if self.direction==1:
+                attack.fq_gj(630,400)
+            elif self.direction==2:
+                attack.fq_gj(580,400)
+            elif self.direction==3:
+                attack.fq_gj(600,370)
+            elif self.direction==4:
+                attack.fq_gj(600,430)
