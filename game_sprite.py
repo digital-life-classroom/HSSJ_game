@@ -6,11 +6,12 @@ class GameSprite(pygame.sprite.Sprite):
         img=pygame.image.load(filename)
         self.original_width=img.get_width()//frames
         self.original_height=img.get_height()
-        frame_surface=pygame.Surface([self.original_width,self.original_height], pygame.SRCALPHA)
+        self.frame_surface=pygame.Surface([self.original_width,self.original_height], pygame.SRCALPHA)
         x=0
         for frame_no in range(frames):
             frame_surface=pygame.Surface([self.original_width,self.original_height], pygame.SRCALPHA)
             frame_surface.blit(img,[x,0])
+            # self.frame_rotate=pygame.transform.rotate(frame_surface,0)
             self.images.append(frame_surface.copy())
             x-=self.original_width
         self.image=self.images[0]
@@ -30,4 +31,8 @@ class GameSprite(pygame.sprite.Sprite):
         self.original_width=original_rect.width
         self.original_height=original_rect.height
         self.rect.center=oldcenter
-        
+    # def retate(self,angle=0):
+    #     frame_rotate=pygame.transform.rotate(self.frame_surface,angle)
+    #     self.images.clear()
+    #     self.images.append(self.frame_surface.copy())
+    #     print(len(self.images))

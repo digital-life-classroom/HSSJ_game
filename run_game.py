@@ -86,6 +86,9 @@ def run_game():
 
             jifen.blit_me(screen)
 
+            if pygame.sprite.spritecollideany(jack.game_jack,spirit.spirit_group):
+                print("------------------------------------------------------------------------")   #pygame.spite.groupcollide(jack.jack_group,spirit.spirit_group,True,True) //碰撞消失
+
             ai_xin.js_xl(6)
 
         # gf.check_event()

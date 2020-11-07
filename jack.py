@@ -74,3 +74,5 @@ class Jack():
                 attack.fq_gj(600,370)
             elif self.direction==4:
                 attack.fq_gj(600,430)
+        if self.gf.key_pressed(pygame.K_c):
+            attack.js_fy()
