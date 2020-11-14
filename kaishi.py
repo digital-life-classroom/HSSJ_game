@@ -5,3 +5,5 @@ class Kaishi():
         self.theInmage=pygame.image.load('image/开始界面.png')
     def kaishi(self,screen):
         screen.blit(self.theInmage,(0,0))
+    def jieshu(self,screen):
+        screen.blit(self.theInmage,(0,0))

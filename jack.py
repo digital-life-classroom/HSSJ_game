@@ -18,7 +18,7 @@ class Jack():
         self.jack_group.add(self.game_jack)
         self.frame=0
         self.next_frame=pygame.time.get_ticks()
-        self.speed=0.5
+        self.speed=1
         self.direction=4
     def blitme(self):
         # self.screen.blit(self.image,self.rect)
@@ -27,7 +27,7 @@ class Jack():
         aixin=Ai_xin(self.screen)
         if pygame.time.get_ticks()>self.next_frame:
             self.frame=(self.frame+1)%4
-            self.next_frame+=180
+            self.next_frame+=200
         if self.gf.key_pressed(pygame.K_RIGHT):
             self.game_jack.change_image(self.frame+8)
             background.move(-self.speed,0)

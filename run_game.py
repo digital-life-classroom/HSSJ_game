@@ -36,7 +36,11 @@ def run_game():
     pygame.mixer.music.play(-1,0)
 
     spirits=Group()
-    for i in range(6):
+
+    next_frame=0
+
+    xl=6
+    for i in range(5):
         spirit=Spirit(screen)
         spirits.add(spirit)
 
@@ -78,22 +82,41 @@ def run_game():
                     ai_xin=Ai_xin(screen)
 
                     jack.blitme()
-        if begingame==True:
+
+                    next_frame=pygame.time.get_ticks()
+                    next_frame_2=pygame.time.get_ticks()
+        if begingame==True and xl>0:
             jack.jack_move(background,spirits)
             jack.jack_attack(attack)
 
-            spirits.update()
-
             jifen.blit_me(screen)
 
-            if pygame.sprite.spritecollideany(jack.game_jack,spirit.spirit_group):
-                print("------------------------------------------------------------------------")   #pygame.spite.groupcollide(jack.jack_group,spirit.spirit_group,True,True) //碰撞消失
+            ai_xin.js_xl(xl)
 
-            ai_xin.js_xl(6)
+            if pygame.time.get_ticks()>next_frame:
+                spirit=Spirit(screen)
+                spirits.add(spirit)
+                next_frame+=20000
+            spirits.update()
+
+            for the_spirit in spirits:
+
+                if pygame.sprite.spritecollideany(jack.game_jack,the_spirit.spirit_group):
+                    if pygame.time.get_ticks()>next_frame_2:
+                        next_frame_2=pygame.time.get_ticks()
+                        xl-=1
+                        ai_xin.js_xl(xl)   #pygame.spite.groupcollide(jack.jack_group,spirit.spirit_group,True,True) //碰撞消失
+                        #音乐
+                        next_frame_2+=3000
 
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
+
+        else:
+            #音乐，图片
+            kai_shi.jieshu(screen)
+
 
         pygame.display.flip()
         
