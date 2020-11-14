@@ -31,8 +31,5 @@ class GameSprite(pygame.sprite.Sprite):
         self.original_width=original_rect.width
         self.original_height=original_rect.height
         self.rect.center=oldcenter
-    # def retate(self,angle=0):
-    #     frame_rotate=pygame.transform.rotate(self.frame_surface,angle)
-    #     self.images.clear()
-    #     self.images.append(self.frame_surface.copy())
-    #     print(len(self.images))
+    def retate(self,angle=0):
+        self.image=pygame.transform.rotate(self.images[self.current_index],angle)

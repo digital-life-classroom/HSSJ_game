@@ -100,14 +100,14 @@ def run_game():
             spirits.update()
 
             for the_spirit in spirits:
-
                 if pygame.sprite.spritecollideany(jack.game_jack,the_spirit.spirit_group):
-                    if pygame.time.get_ticks()>next_frame_2:
-                        next_frame_2=pygame.time.get_ticks()
-                        xl-=1
-                        ai_xin.js_xl(xl)   #pygame.spite.groupcollide(jack.jack_group,spirit.spirit_group,True,True) //碰撞消失
-                        #音乐
-                        next_frame_2+=3000
+                    if not jack.wd:
+                        if pygame.time.get_ticks()>next_frame_2:
+                            next_frame_2=pygame.time.get_ticks()
+                            xl-=1
+                            ai_xin.js_xl(xl)   #pygame.spite.groupcollide(jack.jack_group,spirit.spirit_group,True,True) //碰撞消失
+                            #音乐
+                            next_frame_2+=3000
 
         # gf.check_event()
 
@@ -115,6 +115,7 @@ def run_game():
 
         else:
             #音乐，图片
+            # pygame.mixer.music.stop()
             kai_shi.jieshu(screen)
 
 

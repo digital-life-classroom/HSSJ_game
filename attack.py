@@ -24,14 +24,13 @@ class Attack():
     def blitme(self,x,y):
         self.game_hyjq.move(x,y)
         self.hyjq_group.draw(self.screen)
-    def hyjq_gj(self,x,y):
+    def hyjq_gj(self,x,y,angle):
         if pygame.time.get_ticks()>self.next_frame:
             self.frame=(self.frame+1)%5
             self.next_frame+=120
         self.game_hyjq.move(x,y)
         self.game_hyjq.change_image(self.frame)
-        # self.game_hyjq.retate(60)
-        # self.game_hyjq.change_image(5)
+        self.game_hyjq.retate(angle)
         self.hyjq_group.draw(self.screen)
     def fq_gj(self,x,y):
         if pygame.time.get_ticks()>self.next_frame_2:

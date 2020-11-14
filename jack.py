@@ -18,8 +18,9 @@ class Jack():
         self.jack_group.add(self.game_jack)
         self.frame=0
         self.next_frame=pygame.time.get_ticks()
-        self.speed=1
+        self.speed=0.7
         self.direction=4
+        self.wd=False
     def blitme(self):
         # self.screen.blit(self.image,self.rect)
         self.jack_group.draw(self.screen)
@@ -58,13 +59,13 @@ class Jack():
     def jack_attack(self,attack):
         if self.gf.key_pressed(pygame.K_z):
             if self.direction==1:
-                attack.hyjq_gj(630,400)
+                attack.hyjq_gj(630,400,0)
             elif self.direction==2:
-                attack.hyjq_gj(580,400)
+                attack.hyjq_gj(580,400,180)
             elif self.direction==3:
-                attack.hyjq_gj(600,370)
+                attack.hyjq_gj(600,370,90)
             elif self.direction==4:
-                attack.hyjq_gj(600,430)
+                attack.hyjq_gj(600,430,270)
         if self.gf.key_pressed(pygame.K_x):
             if self.direction==1:
                 attack.fq_gj(630,400)
@@ -76,3 +77,6 @@ class Jack():
                 attack.fq_gj(600,430)
         if self.gf.key_pressed(pygame.K_c):
             attack.js_fy()
+            self.wd=True
+        else:
+            self.wd=False
