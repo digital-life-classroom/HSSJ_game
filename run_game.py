@@ -59,22 +59,6 @@ def run_game():
                     jack=Jack(screen,gf)
 
                     jifen.blit_me(screen)
-                    
-                    spirit_group=pygame.sprite.OrderedUpdates()
-
-                    game_spirit=GameSprite('image/spirit_sprite.png',16)
-                    # game_spirit.move(730,200)
-                    # spirit_group.add(game_spirit)
-                    # spirit_group.draw(screen)
-                    # jifen.blit_me(screen)
-
-                    # for i in range(3):
-                        # a=random.randint(0,1201)
-                        # b=random.randint(0,801)
-                    #     game_spirit.move(a,b)
-                    #     spirit_group.add(game_spirit)
-                    #     spirit_group.draw(screen)
-                    #     game_spirit.change_image(4)
 
                     pygame.mixer.music.load("music/music.wav")
                     pygame.mixer.music.play(-1,0)
@@ -105,16 +89,20 @@ def run_game():
                         if pygame.time.get_ticks()>next_frame_2:
                             next_frame_2=pygame.time.get_ticks()
                             xl-=1
+                            # pygame.mixer.music.load("music/jack_ss.wav")
+                            # pygame.mixer.music.play(1,0)
                             ai_xin.js_xl(xl)   #pygame.spite.groupcollide(jack.jack_group,spirit.spirit_group,True,True) //碰撞消失
-                            #音乐
                             next_frame_2+=3000
-
+                        # pygame.mixer.music.load("music/music.wav")
+                        # pygame.mixer.music.play(-1,0)
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
 
-        else:
-            #音乐，图片
+        elif xl==0:
+            pygame.mixer.music.load("music/end_music.wav")
+            pygame.mixer.music.play(-1,0)
+
             # pygame.mixer.music.stop()
             kai_shi.jieshu(screen)
 
