@@ -73,6 +73,7 @@ def run_game():
                     next_frame=pygame.time.get_ticks()
                     next_frame_2=pygame.time.get_ticks()
                     next_frame_3=pygame.time.get_ticks()
+                    next_frame_4=pygame.time.get_ticks()
         if begingame==True and xl>0:
             jack.jack_move(background,spirits,gems)
             jack.jack_attack(attack)
@@ -104,13 +105,17 @@ def run_game():
                                 jack_ss=pygame.mixer.Sound("music/jack_ss.wav")
                                 jack_ss.set_volume(1)                                             #调节音量
                                 jack_ss.play(0)
-                            ai_xin.js_xl(xl)   #pygame.spite.groupcollide(jack.jack_group,spirit.spirit_group,True,True) //碰撞消失
+                            ai_xin.js_xl(xl)   #pygame.sprite.groupcollide(jack.jack_group,spirit.spirit_group,True,True) //碰撞消失
                             next_frame_2+=3000
-            
-                elif pygame.spite.groupcollide(jack.jack_group,gems,True,False):
-                    xl+=1
-                elif pygame.spite.groupcollide(jack.jack_group,gems,True,False):
-                    xl+=2
+                if pygame.sprite.groupcollide(attack.hyjq_group,the_spirit.spirit_group,True,True):
+                    jifen.plus()
+                if pygame.time.get_ticks()>next_frame_4:
+                    attack=Attack(screen)
+                    next_frame_4+=10000
+            # if pygame.sprite.groupcollide(jack.jack_group,gems,True,False):
+            #     xl+=1
+            # elif pygame.sprite.groupcollide(jack.jack_group,gems,True,False):
+            #     xl+=2
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
