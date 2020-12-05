@@ -2,7 +2,6 @@ import pygame
 from game_sprite import GameSprite
 from ai_xin import Ai_xin
 from attack import Attack
-
 class Jack():
     def __init__(self,screen,gf):
         self.screen=screen
@@ -24,58 +23,80 @@ class Jack():
     def blitme(self):
         # self.screen.blit(self.image,self.rect)
         self.jack_group.draw(self.screen)
-    def jack_move(self,background,spirits):
+
+    def jack_move(self,background,spirits,gems):
         aixin=Ai_xin(self.screen)
         if pygame.time.get_ticks()>self.next_frame:
             self.frame=(self.frame+1)%4
             self.next_frame+=200
+
         if self.gf.key_pressed(pygame.K_RIGHT):
             self.game_jack.change_image(self.frame+8)
             background.move(-self.speed,0)
             self.jack_group.draw(self.screen)
             spirits.update(True,-self.speed,0)
+            gems.update(True,-self.speed,0)
             self.direction=1
+
         elif self.gf.key_pressed(pygame.K_LEFT):
             self.game_jack.change_image(self.frame+4)
             background.move(self.speed,0)
             self.jack_group.draw(self.screen)
             spirits.update(True,self.speed,0)
+            gems.update(True,self.speed,0)
             self.direction=2
+
         elif self.gf.key_pressed(pygame.K_UP):
             self.game_jack.change_image(self.frame+12)
             background.move(0,self.speed)
             self.jack_group.draw(self.screen)
             spirits.update(True,0,self.speed)
+            gems.update(True,0,self.speed)
             self.direction=3
+
         elif self.gf.key_pressed(pygame.K_DOWN):
             self.game_jack.change_image(self.frame)
             background.move(0,-self.speed)
             self.jack_group.draw(self.screen)
             spirits.update(True,0,-self.speed)
+            gems.update(True,0,-self.speed)
             self.direction=4
+
         else:
             background.move(0,0)
             self.jack_group.draw(self.screen)
+
     def jack_attack(self,attack):
         if self.gf.key_pressed(pygame.K_z):
+
             if self.direction==1:
                 attack.hyjq_gj(630,400,0)
+
             elif self.direction==2:
                 attack.hyjq_gj(580,400,180)
+
             elif self.direction==3:
                 attack.hyjq_gj(600,370,90)
+
             elif self.direction==4:
                 attack.hyjq_gj(600,430,270)
+
         if self.gf.key_pressed(pygame.K_x):
+
             if self.direction==1:
                 attack.fq_gj(630,400)
+
             elif self.direction==2:
                 attack.fq_gj(580,400)
+
             elif self.direction==3:
                 attack.fq_gj(600,370)
+
             elif self.direction==4:
                 attack.fq_gj(600,430)
+
         if self.gf.key_pressed(pygame.K_c):
+
             attack.js_fy()
             self.wd=True
         else:

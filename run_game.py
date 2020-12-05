@@ -12,6 +12,7 @@ from spirit import Spirit
 from pygame.sprite import Group
 from ai_xin import Ai_xin
 from attack import Attack
+from gem import Gem
 
 def run_game():
     #初始化游戏
@@ -37,8 +38,6 @@ def run_game():
 
     spirits=Group()
 
-    next_frame=0
-
     xl=6
     for i in range(5):
         spirit=Spirit(screen)
@@ -46,6 +45,10 @@ def run_game():
 
     attack=Attack(screen)
 
+    gems=Group()
+    gem=Gem(screen)
+
+    end=True
     while True:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
@@ -69,8 +72,9 @@ def run_game():
 
                     next_frame=pygame.time.get_ticks()
                     next_frame_2=pygame.time.get_ticks()
+                    next_frame_3=pygame.time.get_ticks()
         if begingame==True and xl>0:
-            jack.jack_move(background,spirits)
+            jack.jack_move(background,spirits,gems)
             jack.jack_attack(attack)
 
             jifen.blit_me(screen)
@@ -83,25 +87,39 @@ def run_game():
                 next_frame+=20000
             spirits.update()
 
+            if pygame.time.get_ticks()>next_frame_3:
+                gem=Gem(screen)
+                gems.add(gem)
+                next_frame_3+=1000
+            gems.update()
+
             for the_spirit in spirits:
                 if pygame.sprite.spritecollideany(jack.game_jack,the_spirit.spirit_group):
                     if not jack.wd:
                         if pygame.time.get_ticks()>next_frame_2:
                             next_frame_2=pygame.time.get_ticks()
+                            xl_2=xl
                             xl-=1
-                            # pygame.mixer.music.load("music/jack_ss.wav")
-                            # pygame.mixer.music.play(1,0)
+                            if xl_2>xl:
+                                jack_ss=pygame.mixer.Sound("music/jack_ss.wav")
+                                jack_ss.set_volume(1)                                             #调节音量
+                                jack_ss.play(0)
                             ai_xin.js_xl(xl)   #pygame.spite.groupcollide(jack.jack_group,spirit.spirit_group,True,True) //碰撞消失
                             next_frame_2+=3000
-                        # pygame.mixer.music.load("music/music.wav")
-                        # pygame.mixer.music.play(-1,0)
+            
+                elif pygame.spite.groupcollide(jack.jack_group,gems,True,False):
+                    xl+=1
+                elif pygame.spite.groupcollide(jack.jack_group,gems,True,False):
+                    xl+=2
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
 
         elif xl==0:
-            pygame.mixer.music.load("music/end_music.wav")
-            pygame.mixer.music.play(-1,0)
+            if end==True:
+                pygame.mixer.music.load("music/end_music.wav")
+                pygame.mixer.music.play(-1,0)
+            end=False
 
             # pygame.mixer.music.stop()
             kai_shi.jieshu(screen)
