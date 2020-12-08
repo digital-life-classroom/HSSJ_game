@@ -4,13 +4,13 @@ from pygame.sprite import Sprite
 from game_sprite import GameSprite
 
 class Spirit(Sprite):
-    def __init__(self,screen):
+    def __init__(self,screen,x,y):
         super(Spirit,self).__init__()
         # self.image=pygame.image.load("image/spirit.png")
         # self.rect=self.image.get_rect()
         self.screen=screen
-        self.pos_x=random.randint(0,1200)
-        self.pos_y=random.randint(0,800)
+        self.pos_x=x
+        self.pos_y=y
         self.spirit_group=pygame.sprite.OrderedUpdates()         #按添加顺序绘制sprite类
         self.game_spirit=GameSprite('image/spirit_sprite.png',16)
         self.game_spirit.move(self.pos_x,self.pos_y)
@@ -52,7 +52,7 @@ class Spirit(Sprite):
                 self.pos_y += self.speed
                 self.game_spirit.move(self.pos_x,self.pos_y)
                 self.spirit_group.draw(self.screen)
-                
+
             elif self.random_direction >=31 and self.random_direction <=40:
                 self.game_spirit.change_image(self.frame+12)
                 # self. rect.centery -= 1
