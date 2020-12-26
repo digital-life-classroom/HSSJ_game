@@ -130,7 +130,6 @@ def run_game():
                             frame_koxie+=3000
                 if pygame.sprite.groupcollide(attack.hyjq_group,the_spirit.spirit_group,True,True):
                     jifen.plus()
-                    print("_____________________________________________________________________________________________________________________________-")
                 if pygame.time.get_ticks()>frame_hyjq:
                     attack.hyjq_group.add(attack.game_hyjq)
                     frame_hyjq+=10000
