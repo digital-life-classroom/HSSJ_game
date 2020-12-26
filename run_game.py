@@ -14,6 +14,7 @@ from ai_xin import Ai_xin
 from attack import Attack
 from gem import Gem
 from monster_nest import Monster_nest
+# import refresh
 
 def run_game():
     #初始化游戏
@@ -47,10 +48,6 @@ def run_game():
         spirits.add(spirit)
 
     attack=Attack(screen)
-    attack_hyjq=Attack(screen)
-    attack_fq=Attack(screen)
-    attack_js=Attack(screen)
-
     gems=Group()
     gem=Gem(screen)
 
@@ -59,6 +56,7 @@ def run_game():
 
     nests=Group()
     nest=Monster_nest(screen)
+    nests.add(nest)
     while True:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
@@ -86,8 +84,8 @@ def run_game():
                     frame_koxie=pygame.time.get_ticks()
                     frame_gem=pygame.time.get_ticks()
                     frame_hyjq=pygame.time.get_ticks()
-        if begingame==True and xl>0:
-            jack.jack_move(background,spirits,gems)
+        if begingame==True and xl>0 and jifen.jifen<5:
+            jack.jack_move(background,spirits,gems,nests)
             jack.jack_attack(attack)
 
             jifen.blit_me(screen)
@@ -105,18 +103,18 @@ def run_game():
             if pygame.time.get_ticks()>frame_gem:
                 gem=Gem(screen)
                 gems.add(gem)
-                frame_gem+=1000
+                frame_gem+=3000
             gems.update()
 
-            if pygame.time.get_ticks()>frame_treehole:
-                nest=Monster_nest(screen)
-                nests.add(nest)
-                frame_treehole+=60000
+            # if pygame.time.get_ticks()>frame_treehole:
+                # frame_treehole+=60000
             nests.update()
             if pygame.time.get_ticks()>frame_treehole_spirit:
                 spirit=Spirit(screen,nest.spirit_treehole_x,nest.spirit_treehole_y)
                 spirits.add(spirit)
-                frame_spirit+=20000
+                frame_treehole_spirit+=20000
+            spirits.update()
+
             for the_spirit in spirits:
                 if pygame.sprite.spritecollideany(jack.game_jack,the_spirit.spirit_group):
                     if not jack.wd:
@@ -130,15 +128,17 @@ def run_game():
                                 jack_ss.play(0)
                             ai_xin.js_xl(xl)   #pygame.sprite.groupcollide(jack.jack_group,spirit.spirit_group,True,True) //碰撞消失
                             frame_koxie+=3000
-                if pygame.sprite.groupcollide(attack_hyjq.hyjq_group,the_spirit.spirit_group,True,True):
+                if pygame.sprite.groupcollide(attack.hyjq_group,the_spirit.spirit_group,True,True):
                     jifen.plus()
+                    print("_____________________________________________________________________________________________________________________________-")
                 if pygame.time.get_ticks()>frame_hyjq:
-                    attack_hyjq=Attack(screen)
+                    attack.hyjq_group.add(attack.game_hyjq)
                     frame_hyjq+=10000
-            # if pygame.sprite.groupcollide(jack.jack_group,gems,True,False):
-            #     xl+=1
-            # elif pygame.sprite.groupcollide(jack.jack_group,gems,True,False):
-            #     xl+=2
+            for gem in gems:
+                if pygame.sprite.groupcollide(jack.jack_group,gem.gem_group_xlbs1,False,True):
+                    xl+=1
+                elif pygame.sprite.groupcollide(jack.jack_group,gem.gem_group_xlbs2,False,True):
+                    xl+=2
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
@@ -151,7 +151,7 @@ def run_game():
 
             # pygame.mixer.music.stop()
             kai_shi.jieshu()
-        elif jifen.jifen==5:
+        elif jifen.jifen>=5:
             if win==True:
                 pygame.mixer.music.load("music/win_music.wav")
                 pygame.mixer.music.play(-1,0)

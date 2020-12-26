@@ -19,7 +19,7 @@ class Spirit(Sprite):
         self.next_frame=pygame.time.get_ticks()
         self.random_direction = 1
         self.speed=0.3
-    def update(self,bg_move=False,x=0,y=0):
+    def update(self,bg_move=False,x=0,y=0,time=0,next_time=0):
         if(bg_move):
             self.pos_x += x
             self.pos_y += y
@@ -31,6 +31,13 @@ class Spirit(Sprite):
                 self.frame=(self.frame+1)%4
                 self.next_frame+=300
                 self.random_direction=random.randint(1,40)
+            
+            # if time < next_time:
+            #     self.random_direction >=1 and self.random_direction <=10
+            #     self.game_spirit.change_image(self.frame+8)
+            #     self.pos_x += self.speed
+            #     self.game_spirit.move(self.pos_x,self.pos_y)
+            #     self.spirit_group.draw(self.screen)
 
             if self.random_direction >=1 and self.random_direction <=10:
                 self.game_spirit.change_image(self.frame+8)
