@@ -14,7 +14,7 @@ from ai_xin import Ai_xin
 from attack import Attack
 from gem import Gem
 from monster_nest import Monster_nest
-# import refresh
+import refresh as re
 
 def run_game():
     #初始化游戏
@@ -78,7 +78,7 @@ def run_game():
 
                     jack.blitme()
 
-                    frame_spirit=pygame.time.get_ticks()
+                    # frame_spirit=pygame.time.get_ticks()
                     frame_treehole=pygame.time.get_ticks()
                     frame_treehole_spirit=pygame.time.get_ticks()
                     frame_koxie=pygame.time.get_ticks()
@@ -92,18 +92,19 @@ def run_game():
 
             ai_xin.js_xl(xl)
 
-            if pygame.time.get_ticks()>frame_spirit:
-                x=random.randint(0,1201)
-                y=random.randint(0,801)
-                spirit=Spirit(screen,x,y)
-                spirits.add(spirit)
-                frame_spirit+=20000
-            spirits.update()
+            re.spirit_refresh(screen,spirits)
+            # if pygame.time.get_ticks()>frame_spirit:
+            #     x=random.randint(0,1201)
+            #     y=random.randint(0,801)
+            #     spirit=Spirit(screen,x,y)
+            #     spirits.add(spirit)
+            #     frame_spirit+=20000
+            # spirits.update()
 
             if pygame.time.get_ticks()>frame_gem:
                 gem=Gem(screen)
                 gems.add(gem)
-                frame_gem+=3000
+                frame_gem+=30000
             gems.update()
 
             # if pygame.time.get_ticks()>frame_treehole:
@@ -134,10 +135,11 @@ def run_game():
                     attack.hyjq_group.add(attack.game_hyjq)
                     frame_hyjq+=10000
             for gem in gems:
-                if pygame.sprite.groupcollide(jack.jack_group,gem.gem_group_xlbs1,False,True):
+                f=True if xl<=5 else False 
+                if pygame.sprite.groupcollide(jack.jack_group,gem.gem_group_xlbs1,False,f) and xl<=5:
                     xl+=1
-                elif pygame.sprite.groupcollide(jack.jack_group,gem.gem_group_xlbs2,False,True):
-                    xl+=2
+                elif pygame.sprite.groupcollide(jack.jack_group,gem.gem_group_xlbs2,False,f) and xl<=5:
+                    xl=xl+1 if xl==5 else xl+2
         # gf.check_event()
 
         # gf.update_screen(screen,jack)
