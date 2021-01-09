@@ -73,31 +73,40 @@ class Jack():
         if self.gf.key_pressed(pygame.K_z):
 
             if self.direction==1:
-                attack.hyjq_gj(630,400,0)
+                attack.angle=0
+                attack.hyjq_gj(630,400)
 
             elif self.direction==2:
-                attack.hyjq_gj(580,400,180)
+                attack.angle=180
+                attack.hyjq_gj(580,400)
 
             elif self.direction==3:
-                attack.hyjq_gj(600,370,90)
+                attack.angle=90
+                attack.hyjq_gj(600,370)
 
             elif self.direction==4:
-                attack.hyjq_gj(600,430,270)
+                attack.angle=270
+                attack.hyjq_gj(600,430)
 
         if self.gf.key_pressed(pygame.K_x):
 
+
+
             if self.direction==1:
+                attack.angle=0
                 attack.fq_gj(630,400)
 
             elif self.direction==2:
+                attack.angle=180
                 attack.fq_gj(580,400)
 
             elif self.direction==3:
+                attack.angle=90
                 attack.fq_gj(600,370)
 
             elif self.direction==4:
+                attack.angle=270
                 attack.fq_gj(600,430)
-
         if self.gf.key_pressed(pygame.K_c):
 
             attack.js_fy()
