@@ -23,7 +23,7 @@ class Jack():
         # self.screen.blit(self.image,self.rect)
         self.jack_group.draw(self.screen)
 
-    def jack_move(self,background,spirits,gems,nests):
+    def jack_move(self,background,spirits,gems,nests,attack):
         aixin=Ai_xin(self.screen)
         if pygame.time.get_ticks()>self.next_frame:
             self.frame=(self.frame+1)%4
@@ -36,6 +36,7 @@ class Jack():
             spirits.update(True,-self.speed,0)
             gems.update(True,-self.speed,0)
             nests.update(True,-self.speed,0)
+            attack.fq_gj_fs(-1,0)
             self.direction=1
 
         elif self.gf.key_pressed(pygame.K_LEFT):
@@ -90,8 +91,6 @@ class Jack():
 
         if self.gf.key_pressed(pygame.K_x):
 
-
-
             if self.direction==1:
                 attack.angle=0
                 attack.fq_gj(630,400)
@@ -107,6 +106,24 @@ class Jack():
             elif self.direction==4:
                 attack.angle=270
                 attack.fq_gj(600,430)
+
+        else:
+            if self.direction==1:
+                attack.angle=0
+                attack.fq_gj_fs()
+
+            elif self.direction==2:
+                attack.angle=180
+                attack.fq_gj_fs()
+
+            elif self.direction==3:
+                attack.angle=90
+                attack.fq_gj_fs()
+
+            elif self.direction==4:
+                attack.angle=270
+                attack.fq_gj_fs()
+
         if self.gf.key_pressed(pygame.K_c):
 
             attack.js_fy()

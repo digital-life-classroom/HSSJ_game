@@ -85,8 +85,8 @@ def run_game():
                     frame_gem=pygame.time.get_ticks()
                     frame_hyjq=pygame.time.get_ticks()
                     frame_fq=pygame.time.get_ticks()
-        if begingame==True and xl>0 and jifen.jifen<5:
-            jack.jack_move(background,spirits,gems,nests)
+        if begingame==True and xl>0 and jifen.jifen<ai_setting.win:
+            jack.jack_move(background,spirits,gems,nests,attack)
             jack.jack_attack(attack)
 
             jifen.blit_me(screen)
@@ -141,7 +141,7 @@ def run_game():
 
             # pygame.mixer.music.stop()
             kai_shi.jieshu()
-        elif jifen.jifen>=5:
+        elif jifen.jifen>=ai_setting.win:
             if win==True:
                 pygame.mixer.music.load("music/win_music.wav")
                 pygame.mixer.music.play(-1,0)
