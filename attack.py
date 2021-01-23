@@ -79,7 +79,7 @@ class Attack():
             self.game_fq.change_image(self.frame_2)
             self.fq_group.draw(self.screen)
             self.fq_speed=0
-    def fq_gj_fs(self,x=0,y=0):
+    def fq_gj_fs(self):
         if self.frame_2>=5:
             self.fq_jt=True
             t=self.t
@@ -94,7 +94,7 @@ class Attack():
                 if self.next_frame_4-self.next_frame_5>=8000:
                     self.next_frame_2 = pygame.time.get_ticks()
                     self.frame_2=0
-            self.game_fq.move(t+x,r+y)
+            self.game_fq.move(t,r)
             self.fq_group.draw(self.screen)
         else:
             self.fq_speed=0

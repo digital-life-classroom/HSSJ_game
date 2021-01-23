@@ -86,7 +86,7 @@ def run_game():
                     frame_hyjq=pygame.time.get_ticks()
                     frame_fq=pygame.time.get_ticks()
         if begingame==True and xl>0 and jifen.jifen<ai_setting.win:
-            jack.jack_move(background,spirits,gems,nests,attack)
+            jack.jack_move(background,spirits,gems,nests)
             jack.jack_attack(attack)
 
             jifen.blit_me(screen)
