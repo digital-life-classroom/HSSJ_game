@@ -2,7 +2,7 @@ import pygame
 class JiFen():
     def __init__(self):
         self.jifen=0
-        self.jiFen=pygame.font.SysFont("'simsunnsimsun",30)
+        self.jiFen=pygame.font.Font("fonts/simsun.ttc",30)
         self.jiFenRender=self.jiFen.render("杀敌数:"+str(self.jifen),False,(255,170,0))
         self.jiFenRect=self.jiFenRender.get_rect()
         self.jiFenRect.left=1050
